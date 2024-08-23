@@ -1,13 +1,22 @@
 const express = require("express")
 const cors = require('cors');
 const app  = express()
+const rateLimit = require('express-rate-limit');
 
 const dbFn = require('./database')
 const dotenv = require("dotenv")
 dotenv.config()
 
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 5, // Limit each IP to 5 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.'
+});
+
 require('./cron-scripts/autobot-scripts')
 app.use(cors());
+// Apply rate limit to all routes
+app.use(limiter);
 
 app.get('/autobots', (req, res) => {
     try {
