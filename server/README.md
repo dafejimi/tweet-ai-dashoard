@@ -39,7 +39,7 @@ Ensure you have the following installed:
     GET /autobots - Retrieve all Autobots.
     GET /autobots/:id -  Retrieve details of a specific Autobot by ID.
 
-1. **Posts**
+2. **Posts**
     ```bash
     GET /posts - Retrieve all Posts.
     GET /posts/:id -  Retrieve details of a specific Post by ID.
